@@ -49,7 +49,6 @@ class ProductServiceApplicationTests {
 				.body("name", Matchers.equalTo("name"))
 				.body("description", Matchers.equalTo("description"))
 				.body("price", Matchers.equalTo(1000));
-
 	}
 
 }
