@@ -1,5 +1,6 @@
 package shopping.app.inventoryservice.unit;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -32,7 +33,7 @@ public class InventoryServiceTest {
         boolean isInStock = inventoryService.isInStock(skuCode, quantity);
 
         // Then
-        assertTrue(isInStock);
+        Assertions.assertTrue(isInStock);
         verify(inventoryRepository, times(1)).existsBySkuCodeAndQuantityIsGreaterThanEqual(skuCode, quantity);
     }
 }

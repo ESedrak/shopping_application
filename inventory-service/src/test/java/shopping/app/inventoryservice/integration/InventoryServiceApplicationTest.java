@@ -1,6 +1,7 @@
 package shopping.app.inventoryservice.integration;
 
 import io.restassured.RestAssured;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -38,7 +39,7 @@ public class InventoryServiceApplicationTest {
                 .log().all()
                 .statusCode(200)
                 .extract().response().as(Boolean.class);
-        assertTrue(response);
+        Assertions.assertTrue(response);
     }
     @Test
     void inventoryOutOfStock() {
@@ -49,6 +50,6 @@ public class InventoryServiceApplicationTest {
                 .log().all()
                 .statusCode(200)
                 .extract().response().as(Boolean.class);
-        assertFalse(response);
+        Assertions.assertFalse(response);
     }
 }
