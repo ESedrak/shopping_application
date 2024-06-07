@@ -25,8 +25,7 @@ public class ProductService {
         productRepository.save(product);
         log.info("Product created successfully");
 
-        ProductResponse productResponse = new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getPrice());
-        return productResponse;
+        return new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getPrice());
     }
 
     public List<ProductResponse> getAllProducts() {
