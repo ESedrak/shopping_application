@@ -9,7 +9,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import shopping.app.inventoryservice.repository.InventoryRepository;
 import shopping.app.inventoryservice.service.InventoryService;
 
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
