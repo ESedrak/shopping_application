@@ -29,7 +29,7 @@ class ProductServiceApplicationTests {
 	}
 
 	@Test
-	void shouldCreateProduct() {
+	void createProduct_givenValid_success() {
 		String requestBody = """
 				{
 					"name": "name",
@@ -49,6 +49,35 @@ class ProductServiceApplicationTests {
 				.body("name", Matchers.equalTo("name"))
 				.body("description", Matchers.equalTo("description"))
 				.body("price", Matchers.equalTo(1000));
+	}
+
+	@Test
+	void createProduct_givenBadRequest_throws() {
+		String badRequestBody = """
+				{
+					"name": "badRequest",
+				    "description": 1,
+				    "price": "should be an integer"
+				}
+				""";
+
+		RestAssured.given()
+				.contentType("application/json")
+				.body(badRequestBody)
+				.when()
+				.post("/api/product")
+				.then()
+				.statusCode(400);
+	}
+
+	@Test
+	void getProduct_givenValid_success() {
+		RestAssured.given()
+				.contentType("application/json")
+				.when()
+				.get("/api/product")
+				.then()
+				.statusCode(200);
 	}
 
 }
