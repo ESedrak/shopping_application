@@ -20,15 +20,15 @@ public class MongoDBConfig {
     private String host;
 
     @Value("${MONGO_PORT}")
-    private String port;
+    private int port;
 
     @Value("${MONGO_DB}")
     private String database;
 
     @Bean
     public MongoTemplate mongoTemplate() {
-        String connectionString = "mongodb://" + username + ":" + password + "@" + host + ":" + port + "/" + database + "?authSource=admin";
-        SimpleMongoClientDatabaseFactory factory = new SimpleMongoClientDatabaseFactory(MongoClients.create(connectionString), database);
+        String connection = String.format("mongodb://%s:%s@%s:%d/%s?authSource=admin", username, password, host, port, database);
+        SimpleMongoClientDatabaseFactory factory = new SimpleMongoClientDatabaseFactory(MongoClients.create(connection), database);
         return new MongoTemplate(factory);
     }
 }
