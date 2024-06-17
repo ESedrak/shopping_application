@@ -2,9 +2,9 @@
 
 For local development:
 - create a .env file with the following
-    - PRODUCT_SERVICE_BASEPATH=http://localhost:8080
-    - ORDER_SERVICE_BASEPATH=http://localhost:8081
-    - INVENTORY_SERVICE_BASEPATH=http://localhost:8082
+    - SERVICES_URL_PRODUCT=http://localhost:8080
+    - SERVICES_URL_ORDER=http://localhost:8081
+    - SERVICES_URL_INVENTORY=http://localhost:8082
     - MYSQL_ROOT_PASSWORD=root
     - MYSQL_DATABASE=keycloak
     - MYSQL_USER=keycloak
