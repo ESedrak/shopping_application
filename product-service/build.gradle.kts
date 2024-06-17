@@ -1,3 +1,6 @@
+val openApi by extra("2.5.0")
+val restAssured by extra("5.4.0")
+
 plugins {
 	java
 	id("org.springframework.boot") version "3.3.0"
@@ -24,6 +27,8 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:$openApi")
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:$openApi")
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -32,7 +37,7 @@ dependencies {
 	testImplementation("org.testcontainers:junit-jupiter")
 	testImplementation("org.testcontainers:mongodb")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-	testImplementation("io.rest-assured:rest-assured:5.4.0")
+	testImplementation("io.rest-assured:rest-assured:$restAssured")
 }
 
 tasks.withType<Test> {
