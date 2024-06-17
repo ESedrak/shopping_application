@@ -1,4 +1,4 @@
-package shopping.app.product.configuration;
+package shopping.app.product.config;
 
 import com.mongodb.client.MongoClients;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,6 +1,7 @@
 val springCloudVer by extra("2023.0.2")
 val commonsLang3 by extra("3.13.0")
 val restAssured by extra("5.4.0")
+val openApi by extra("2.5.0")
 
 plugins {
     java
@@ -34,6 +35,8 @@ dependencies {
     implementation("org.flywaydb:flyway-mysql")
     implementation("org.apache.commons:commons-lang3:$commonsLang3")
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:$openApi")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:$openApi")
     compileOnly("org.projectlombok:lombok")
     runtimeOnly("com.mysql:mysql-connector-j")
     annotationProcessor("org.projectlombok:lombok")
