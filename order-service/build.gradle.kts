@@ -34,7 +34,6 @@ dependencies {
     implementation("org.flywaydb:flyway-core")
     implementation("org.flywaydb:flyway-mysql")
     implementation("org.apache.commons:commons-lang3:$commonsLang3")
-    implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:$openApi")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:$openApi")
     compileOnly("org.projectlombok:lombok")

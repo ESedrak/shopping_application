@@ -1,3 +1,6 @@
+val openApi by extra("2.5.0")
+val springCloudVersion by extra("2023.0.2")
+
 plugins {
     java
     id("org.springframework.boot") version "3.3.0"
@@ -17,18 +20,20 @@ repositories {
     mavenCentral()
 }
 
-extra["springCloudVersion"] = "2023.0.2"
-
 dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-gateway-mvc")
     implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:$openApi")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:$openApi")
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 dependencyManagement {
     imports {
-        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
     }
 }
 
