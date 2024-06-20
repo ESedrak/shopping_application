@@ -36,6 +36,8 @@ dependencies {
     implementation("org.apache.commons:commons-lang3:$commonsLang3")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:$openApi")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:$openApi")
+    implementation("org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
     compileOnly("org.projectlombok:lombok")
     runtimeOnly("com.mysql:mysql-connector-j")
     annotationProcessor("org.projectlombok:lombok")
