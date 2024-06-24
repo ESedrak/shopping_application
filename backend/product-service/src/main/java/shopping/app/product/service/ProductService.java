@@ -23,10 +23,10 @@ public class ProductService {
                 .skuCode(productRequest.skuCode())
                 .price(productRequest.price())
                 .build();
-        productRepository.save(product);
+        Product savedProduct = productRepository.save(product);
         log.info("Product created successfully");
 
-        return new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getSkuCode(), product.getPrice());
+        return new ProductResponse(savedProduct.getId(), savedProduct.getName(), savedProduct.getDescription(), savedProduct.getSkuCode(), savedProduct.getPrice());
     }
 
     public List<ProductResponse> getAllProducts() {
