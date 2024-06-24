@@ -10,4 +10,5 @@ public class RoutesConfigProps {
     private String product;
     private String order;
     private String inventory;
+    private String frontend;
 }

@@ -5,6 +5,7 @@ For local development:
     - SERVICES_URL_PRODUCT=http://localhost:8080
     - SERVICES_URL_ORDER=http://localhost:8081
     - SERVICES_URL_INVENTORY=http://localhost:8082
+    - SERVICES_URL_FRONTEND=http://localhost:4200
     - MYSQL_ROOT_PASSWORD=root
     - MYSQL_DATABASE=keycloak
     - MYSQL_USER=keycloak
