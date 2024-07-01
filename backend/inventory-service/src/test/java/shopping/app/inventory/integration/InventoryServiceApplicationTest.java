@@ -1,4 +1,4 @@
-package shopping.app.inventoryservice.integration;
+package shopping.app.inventory.integration;
 
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.Assertions;

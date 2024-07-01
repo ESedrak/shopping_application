@@ -1,4 +1,4 @@
-package shopping.app.inventoryservice.config;
+package shopping.app.inventory.config;
 
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;

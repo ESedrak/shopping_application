@@ -36,10 +36,9 @@ class ProductServiceTest {
     @Test
     @DisplayName("createProduct should save and return product")
     void createProductHappyPath() {
-        ProductRequest productRequest = new ProductRequest("id", "name", "description", "skuCode", new BigDecimal("1000"));
+        ProductRequest productRequest = new ProductRequest("name", "description", "skuCode", new BigDecimal("1000"));
         Product product = new Product("id", "name", "description", "skuCode", new BigDecimal("1000"));
-        Product savedProduct = new Product("id", "name", "description", "skuCode", new BigDecimal("1000"));
-        when(productRepository.save(any())).thenReturn(savedProduct);
+        when(productRepository.save(any())).thenReturn(product);
 
         ProductResponse result = productService.createProduct(productRequest);
 
