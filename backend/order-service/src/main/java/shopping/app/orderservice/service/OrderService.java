@@ -22,24 +22,36 @@ public class OrderService {
     private final KafkaTemplate<String, OrderPlacedEvent> kafkaTemplate;
 
     public void placeOrder(OrderRequest orderRequest){
+        validateProductStock(orderRequest);
+        Order order = createAndSaveOrder(orderRequest);
+        sendOrderPlacedEvent(order, orderRequest.userDetails().email());
+    }
+
+    private void validateProductStock(OrderRequest orderRequest) {
         var isProductInStock = inventoryClient.isInStock(orderRequest.skuCode(), orderRequest.quantity());
-
-        if (isProductInStock) {
-            Order order = new Order();
-            order.setOrderNumber(UUID.randomUUID().toString());
-            order.setPrice(orderRequest.price());
-            order.setSkuCode(orderRequest.skuCode());
-            order.setQuantity(orderRequest.quantity());
-
-            orderRepository.save(order);
-            // Send the message to kafka topic
-            OrderPlacedEvent orderPlacedEvent = new OrderPlacedEvent(order.getOrderNumber(), orderRequest.userDetails().email());
-            log.info("Start - Sending OrderPlacedEvent {} event to kafka topic", orderPlacedEvent);
-            kafkaTemplate.send("order-placed", orderPlacedEvent);
-            log.info("End - Sending OrderPlacedEvent {} event to kafka topic", orderPlacedEvent);
-        } else {
+        if (!isProductInStock) {
             throw new RuntimeException("Product with skuCode +" + orderRequest.skuCode() + " is not in stock");
         }
+    }
 
+    private Order createAndSaveOrder(OrderRequest orderRequest) {
+        var order = mapToOrder(orderRequest);
+        return orderRepository.save(order);
+    }
+
+    private void sendOrderPlacedEvent(Order order, String email) {
+        OrderPlacedEvent orderPlacedEvent = new OrderPlacedEvent(order.getOrderNumber(), email);
+        log.info("Start - Sending OrderPlacedEvent {} event to kafka topic", orderPlacedEvent);
+        kafkaTemplate.send("order-placed", orderPlacedEvent);
+        log.info("End - Sending OrderPlacedEvent {} event to kafka topic", orderPlacedEvent);
+    }
+
+    private static Order mapToOrder(OrderRequest orderRequest) {
+        Order order = new Order();
+        order.setOrderNumber(UUID.randomUUID().toString());
+        order.setPrice(orderRequest.price());
+        order.setQuantity(orderRequest.quantity());
+        order.setSkuCode(orderRequest.skuCode());
+        return order;
     }
 }

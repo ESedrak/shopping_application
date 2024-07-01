@@ -33,7 +33,7 @@ public class ProductServiceSteps {
     @Given("a product request with name {string}, description {string}, skuCode {string}, and price {string}")
     public void aProductRequest(String name, String description, String skuCode, String price) {
         MockitoAnnotations.openMocks(this);
-        ProductRequest productRequest = new ProductRequest(null, name, description, skuCode, new BigDecimal(price));
+        ProductRequest productRequest = new ProductRequest(name, description, skuCode, new BigDecimal(price));
         Product product = new Product("id", name, description, skuCode, new BigDecimal(price));
         when(productRepository.save(any())).thenReturn(product);
         result = productService.createProduct(productRequest);
