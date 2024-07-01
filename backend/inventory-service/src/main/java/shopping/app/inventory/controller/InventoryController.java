@@ -1,4 +1,4 @@
-package shopping.app.inventoryservice.controller;
+package shopping.app.inventory.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import shopping.app.inventoryservice.service.InventoryService;
+import shopping.app.inventory.service.InventoryService;
 
 @RestController
 @RequestMapping("/api/inventory")

@@ -1,8 +1,8 @@
-package shopping.app.inventoryservice.service;
+package shopping.app.inventory.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import shopping.app.inventoryservice.repository.InventoryRepository;
+import shopping.app.inventory.repository.InventoryRepository;
 
 @Service
 @RequiredArgsConstructor

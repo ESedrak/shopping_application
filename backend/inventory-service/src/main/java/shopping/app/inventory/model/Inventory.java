@@ -1,4 +1,4 @@
-package shopping.app.inventoryservice.model;
+package shopping.app.inventory.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

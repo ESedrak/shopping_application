@@ -1,4 +1,4 @@
-package shopping.app.inventoryservice;
+package shopping.app.inventory;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.context.TestConfiguration;
