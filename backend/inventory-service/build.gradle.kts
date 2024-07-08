@@ -44,7 +44,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-aop")
     implementation("io.micrometer:micrometer-tracing-bridge-brave:$micrometerTrackingBridge")
     implementation("io.zipkin.reporter2:zipkin-reporter-brave:$zipkin")
-    implementation("net.ttddyy.observation:datasource-micrometer-spring-boot:1.0.5")
 
     compileOnly("org.projectlombok:lombok")
 
