@@ -1,5 +1,6 @@
 package shopping.app.orderservice.config;
 
+import io.micrometer.observation.ObservationRegistry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.client.ClientHttpRequestFactories;
@@ -20,12 +21,14 @@ import java.time.Duration;
 public class RestClientConfig {
 
     private final RestClientConfigProps restClientConfigProps;
+    private final ObservationRegistry registry;
 
     @Bean
     public InventoryClient inventoryClient() {
         RestClient restClient = RestClient.builder()
                 .baseUrl(restClientConfigProps.getUrl())
                 .requestFactory(getClientHttpRequestFactories())
+                .observationRegistry(registry)
                 .build();
         var restClientAdapter = RestClientAdapter.create(restClient);
         var httpServiceProxyFactory = HttpServiceProxyFactory.builderFor(restClientAdapter).build();

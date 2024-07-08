@@ -3,6 +3,10 @@ val restAssured by extra("5.4.0")
 val junit by extra("5.10.2")
 val cucumber by extra("7.18.0")
 
+val loki by extra("1.5.1")
+val micrometerTrackingBridge by extra("1.3.0")
+val zipkin by extra("3.4.0")
+
 plugins {
     java
     id("org.springframework.boot") version "3.3.0"
@@ -35,23 +39,33 @@ dependencies {
     implementation("org.flywaydb:flyway-mysql")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:$openApi")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:$openApi")
+    implementation("com.github.loki4j:loki-logback-appender:$loki")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.boot:spring-boot-starter-aop")
+    implementation("io.micrometer:micrometer-tracing-bridge-brave:$micrometerTrackingBridge")
+    implementation("io.zipkin.reporter2:zipkin-reporter-brave:$zipkin")
+    implementation("net.ttddyy.observation:datasource-micrometer-spring-boot:1.0.5")
+
     compileOnly("org.projectlombok:lombok")
+
     runtimeOnly("com.mysql:mysql-connector-j")
+    runtimeOnly("io.micrometer:micrometer-registry-prometheus")
+
     annotationProcessor("org.projectlombok:lombok")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.boot:spring-boot-testcontainers")
     testImplementation("org.testcontainers:junit-jupiter")
     testImplementation("org.testcontainers:mysql")
     testImplementation("io.rest-assured:rest-assured:$restAssured")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-
     testImplementation(platform("org.junit:junit-bom:$junit"))
     testImplementation(platform("io.cucumber:cucumber-bom:$cucumber"))
-
     testImplementation("io.cucumber:cucumber-java")
     testImplementation("io.cucumber:cucumber-junit-platform-engine")
     testImplementation("org.junit.platform:junit-platform-suite")
     testImplementation("org.junit.jupiter:junit-jupiter")
+
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 tasks.withType<Test> {
