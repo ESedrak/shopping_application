@@ -11,4 +11,6 @@
 - Microservices
   - Order Service
   - Product Service
-  - Inventory Service 
+  - Inventory Service
+  - Notification Service
+  - API Gateway 
