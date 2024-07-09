@@ -2,6 +2,9 @@ val openApi by extra("2.5.0")
 val restAssured by extra("5.4.0")
 val junit by extra("5.10.2")
 val cucumber by extra("7.18.0")
+val loki by extra("1.5.1")
+val micrometerTrackingBridge by extra("1.3.0")
+val zipkin by extra("3.4.0")
 
 plugins {
 	java
@@ -31,6 +34,11 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:$openApi")
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:$openApi")
+	implementation("com.github.loki4j:loki-logback-appender:$loki")
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
+	implementation("org.springframework.boot:spring-boot-starter-aop")
+	implementation("io.micrometer:micrometer-tracing-bridge-brave:$micrometerTrackingBridge")
+	implementation("io.zipkin.reporter2:zipkin-reporter-brave:$zipkin")
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -38,6 +46,7 @@ dependencies {
 	testImplementation("io.projectreactor:reactor-test")
 	testImplementation("org.testcontainers:junit-jupiter")
 	testImplementation("org.testcontainers:mongodb")
+	runtimeOnly("io.micrometer:micrometer-registry-prometheus")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	testImplementation("io.rest-assured:rest-assured:$restAssured")
 
