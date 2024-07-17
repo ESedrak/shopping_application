@@ -10,26 +10,32 @@ on:
 jobs:
   qodana-backend:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      checks: write
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      # Got NoSuchFileException for qodana-backend.yaml, copying it from .github/qodana-backend.yaml instead
+      - name: 'Use qodana-backend config'
+        run: cp .github/qodana-backend.yaml qodana.yaml
       - name: 'Qodana Backend'
         uses: JetBrains/qodana-action@v2024.1
         with:
           args: |
-            --source-directory,backend,--config,qodana-backend.yaml
+            --source-directory,backend
           artifact-name: qodana-backend
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN_BACKEND }}
-
   qodana-frontend:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: 'Qodana Scan - Frontend'
+      - name: 'Qodana Frontend'
         uses: JetBrains/qodana-action@v2024.1
         with:
           args: |
