@@ -25,7 +25,9 @@ jobs:
         uses: JetBrains/qodana-action@v2024.1
         with:
           args: |
-            --source-directory,backend
+            --source-directory,backend,--apply-fixes
+          pr-mode: false
+          push-fixes: pull-request
           artifact-name: qodana-backend
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN_BACKEND }}
@@ -39,7 +41,9 @@ jobs:
         uses: JetBrains/qodana-action@v2024.1
         with:
           args: |
-            --source-directory,frontend,--config,qodana-frontend.yaml
+            --source-directory,frontend,--config,qodana-frontend.yaml,--apply-fixes
+          pr-mode: false
+          push-fixes: pull-request
           artifact-name: qodana-frontend
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN_FRONTEND }}
