@@ -23,16 +23,26 @@ jobs:
 
   qodana-product-service:
     runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
+      - name: Cache Qodana
+        uses: actions/cache@v2
+        with:
+          path: /home/runner/work/_temp/qodana/caches
+          key: qodana-2024.1-${{ github.ref }}-${{ github.sha }}
+
       - name: 'Qodana Scan - Product Service'
         uses: JetBrains/qodana-action@v2024.1
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
         with:
-          args: scan --project-dir backend/product-service
+          args: scan --project-dir backend/product-service --commit ${{ github.sha }} --config backend/product-service/qodana.yaml
 
   qodana-inventory-service:
     runs-on: ubuntu-latest
