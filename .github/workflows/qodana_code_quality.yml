@@ -19,7 +19,7 @@ jobs:
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
         with:
-          arguments: --project-dir backend/order-service
+          args: --project-dir backend/order-service
 
   qodana-product-service:
     runs-on: ubuntu-latest
@@ -32,7 +32,7 @@ jobs:
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
         with:
-          arguments: --project-dir backend/product-service
+          args: --project-dir backend/product-service
 
   qodana-inventory-service:
     runs-on: ubuntu-latest
@@ -45,7 +45,7 @@ jobs:
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
         with:
-          arguments: --project-dir backend/inventory-service
+          args: --project-dir backend/inventory-service
 
   qodana-api-gateway:
     runs-on: ubuntu-latest
@@ -58,7 +58,7 @@ jobs:
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
         with:
-          arguments: --project-dir backend/api-gateway
+          args: --project-dir backend/api-gateway
 
   qodana-frontend:
     runs-on: ubuntu-latest
@@ -71,4 +71,4 @@ jobs:
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
         with:
-          arguments: --project-dir frontend
+          args: --project-dir frontend
