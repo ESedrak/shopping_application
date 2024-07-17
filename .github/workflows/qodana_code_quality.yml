@@ -42,7 +42,9 @@ jobs:
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
         with:
-          args: scan --project-dir backend/product-service --commit ${{ github.sha }} --config backend/product-service/qodana.yaml
+          args: scan --project-dir backend/product-service --config backend/product-service/qodana.yaml --apply fix
+          pr-mode: false
+          push-fixes: pull-request
 
   qodana-inventory-service:
     runs-on: ubuntu-latest
